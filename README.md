@@ -158,9 +158,12 @@ Below are demonstrations of good and bad code for the above cases. I will use th
 
 ### How to run the linter
 
+
 - Get a local copy of the repository by running the following commands on your terminal:
-    $ cd <folder>    
-    $ git clone git@github.com:German-Cobian/Linter-in-Ruby.git
+
+      $ cd <folder>    
+      $ git clone git@github.com:German-Cobian/Linter-in-Ruby.git
+   
 - Add the file or files to be linted in the project root directory.
 - Execute the main.rb file inside bin/main.
 - Specify the path to the file when prompted (../my_test.rb for example).
