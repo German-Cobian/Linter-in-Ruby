@@ -15,6 +15,7 @@ class ErrorCheck
     tag_error?
     double_quotes?
     indentation_for_class?
+    double_space_around_operator?
   end
 
   def trailing_space?
