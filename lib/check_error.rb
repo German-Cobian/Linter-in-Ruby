@@ -13,6 +13,7 @@ class ErrorCheck
     trailing_space?
     empty_line_error?
     tag_error?
+    double_quotes?
   end
 
   def trailing_space?
@@ -76,6 +77,16 @@ class ErrorCheck
     check_tag_error(/\(/, /\)/, '(', ')', 'Parenthesis')
     check_tag_error(/\[/, /\]/, '[', ']', 'Square Bracket')
     check_tag_error(/\{/, /\}/, '{', '}', 'Curly Bracket')
+  end
+
+  def double_quotes?
+    @lint_action.line_by_line.each_with_index do |line, i|
+      next unless line.include? '"'
+
+      unless quotes_contain_variable(line)
+        @error_messages << { line_num: i + 1, message: 'Prefer single-quoted strings when you don\'t need string interpolation or special symbols' }
+      end
+    end
   end
 
 end
