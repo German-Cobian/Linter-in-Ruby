@@ -1,3 +1,4 @@
+require 'strscan'
 require_relative 'file_reader.rb'
 
 class ErrorCheck
@@ -11,6 +12,7 @@ class ErrorCheck
   def check_errors
     trailing_space?
     empty_line_error?
+    tag_error?
   end
 
   def trailing_space?
@@ -53,6 +55,27 @@ class ErrorCheck
     return unless line.strip.split(' ').include?('do')
    
       @error_messages << { line_num: i + 2, message: 'Extra empty line detected at block body beginning'  }  if @lint_action.line_by_line[i + 1].strip.empty?
+  end
+
+  def check_tag_error(*args)
+    @lint_action.line_by_line.each_with_index do |line, i|
+      begin_p = []
+      end_p = []
+      begin_p << line.scan(args[0])
+      end_p << line.scan(args[1])
+
+      if begin_p.flatten.size < end_p.flatten.size
+        @error_messages << { line_num: i + 1, message: "Lint/Syntax: Unexpected/Missing token '#{args[2]}' #{args[4]}" } 
+      elsif begin_p.flatten.size > end_p.flatten.size
+        @error_messages << { line_num: i + 1, message: "Lint/Syntax: Unexpected/Missing token '#{args[3]}' #{args[4]}" }
+      end
+    end
+  end
+
+  def tag_error?
+    check_tag_error(/\(/, /\)/, '(', ')', 'Parenthesis')
+    check_tag_error(/\[/, /\]/, '[', ']', 'Square Bracket')
+    check_tag_error(/\{/, /\}/, '{', '}', 'Curly Bracket')
   end
 
 end
