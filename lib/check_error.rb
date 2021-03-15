@@ -14,6 +14,7 @@ class ErrorCheck
     empty_line_error?
     tag_error?
     double_quotes?
+    indentation_for_class?
   end
 
   def trailing_space?
@@ -85,6 +86,36 @@ class ErrorCheck
 
       unless quotes_contain_variable(line)
         @error_messages << { line_num: i + 1, message: 'Prefer single-quoted strings when you don\'t need string interpolation or special symbols' }
+      end
+    end
+  end
+
+  def quotes_contain_variable(line)
+    quote_position = line.index('"')
+    return false if quote_position.nil?
+
+    rest_of_line = line[quote_position + 1..-1]
+    second_quote_position = rest_of_line.index('"')
+    quotes_content = line[quote_position + 1..second_quote_position]
+    quotes_content.include? '#{'
+  end
+
+  def indentation_for_class?
+    key_word = ['class']
+    @lint_action.line_by_line.each_with_index do |line, i|
+      temp_string = line.strip
+      key_word.each do |value|
+        @error_messages << { line_num: i + 1, message: 'Wrong indentation space' } if temp_string[0...value.size] == value && line[0] == ' '
+      end
+    end
+  end
+
+  def double_space_around_operator?
+    @lint_action.line_by_line.each_with_index do |line, i|
+      if line.strip.include? '=  '
+        @error_messages << { line_num: i + 1, message: 'Operator = should be surrounded by a single space' }
+      elsif line.strip.include? '  ='
+        @error_messages << { line_num: i + 1, message: 'Operator = should be surrounded by a single space' }
       end
     end
   end
