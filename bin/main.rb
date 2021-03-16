@@ -6,19 +6,16 @@ def show_errors(check)
   check.error_messages.each { |error| puts "\nLine #{error[:line_num]}: #{error[:message]}" }
 end
 puts
-puts 'Please type path of file you intend to check:'
+puts "\nPlease type path of file you intend to check:"
 file_path = gets.chomp
 check = ErrorCheck.new(file_path)
 go_ahead = FileReader.new(file_path)
 if go_ahead.valid
-  puts
-  puts "Checking #{file_path} for errors."
+  puts "\nChecking #{file_path} for errors."
   check.check_errors
   show_errors(check)
-  puts
-  puts "#{check.error_messages.size} offenses detected"
-  puts
+  puts "\n#{check.error_messages.size} offenses detected"
 else
-  puts
-  puts "Could not open file #{file_path}"
+  puts "\nCould not open file #{file_path}\n"
 end
+puts

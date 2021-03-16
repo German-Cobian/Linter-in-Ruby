@@ -103,7 +103,7 @@ class ErrorCheck
 
       unless quotes_contain_variable(line)
         @error_messages << { line_num: idx + 1,
-                             message: 'Prefer single-quoted strings when you don\'t need string interpolation or special symbols' }
+                             message: 'Prefer single-quoted strings when no string interpolation or special symbols' }
       end
     end
   end
