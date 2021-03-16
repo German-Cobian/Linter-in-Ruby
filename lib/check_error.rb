@@ -20,9 +20,7 @@ class ErrorCheck
 
   def trailing_space?
     @lint_action.line_by_line.each_with_index do |line, idx|
-      if line[-2] == ' ' && !line.strip.empty?
-        @error_messages << { line_num: idx + 1, message: 'Trailing whitespace detected' }
-      end
+      @error_messages << { line_num: idx + 1, message: 'Trailing whitespace detected' } if line[-2] == ' ' && !line.strip.empty?
     end
   end
 
@@ -38,41 +36,26 @@ class ErrorCheck
   def class_empty_line?(line, idx)
     return unless line.strip.split(' ').first.eql?('class')
 
-    if @lint_action.line_by_line[idx + 1].strip.empty?
-      @error_messages << { line_num: idx + 2,
-                           message: 'Extra empty line detected at class body beginning' }
-    end
+    @error_messages << { line_num: idx + 2, message: 'Extra empty line detected at class body beginning' } if @lint_action.line_by_line[idx + 1].strip.empty?
   end
 
   def def_empty_line?(line, idx)
     return unless line.strip.split(' ').first.eql?('def')
 
-    if @lint_action.line_by_line[idx + 1].strip.empty?
-      @error_messages << { line_num: idx + 2,
-                           message: 'Extra empty line detected at method body beginning' }
-    end
-    if @lint_action.line_by_line[idx - 1].strip.split(' ').first.eql?('end')
-      @error_messages << { line_num: idx + 1,
-                           message: 'Use empty lines between method definition' }
-    end
+    @error_messages << { line_num: idx + 2, message: 'Extra empty line detected at method body beginning' } if @lint_action.line_by_line[idx + 1].strip.empty?
+    @error_messages << { line_num: idx + 1, message: 'Use empty lines between method definition' } if @lint_action.line_by_line[idx - 1].strip.split(' ').first.eql?('end')
   end
 
   def end_empty_line?(line, idx)
     return unless line.strip.split(' ').first.eql?('end')
 
-    if @lint_action.line_by_line[idx - 1].strip.empty?
-      @error_messages << { line_num: idx,
-                           message: 'Extra empty line detected at block body end' }
-    end
+    @error_messages << { line_num: idx, message: 'Extra empty line detected at block body end' } if @lint_action.line_by_line[idx - 1].strip.empty?
   end
 
   def do_empty_line?(line, idx)
     return unless line.strip.split(' ').include?('do')
 
-    if @lint_action.line_by_line[idx + 1].strip.empty?
-      @error_messages << { line_num: idx + 2,
-                           message: 'Extra empty line detected at block body beginning' }
-    end
+    @error_messages << { line_num: idx + 2, message: 'Extra empty line detected at block body beginning' } if @lint_action.line_by_line[idx + 1].strip.empty?
   end
 
   def check_tag_error(*args)
