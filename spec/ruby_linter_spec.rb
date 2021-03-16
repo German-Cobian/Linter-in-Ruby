@@ -1,19 +1,15 @@
-require_relative '../lib/check_error.rb'
+require_relative '../lib/check_error'
 
 RSpec.describe ErrorCheck do
   instance = ErrorCheck.new('../my_test.rb')
   describe 'valid' do
     FileReader.new('../my_test.rb')
-    it 'returns true if it opens a file and read its lines' do
+    it 'returns true if it opens a file and reads its lines' do
       expect(instance.error_messages.all?).to be true
     end
 
     it 'returns error message if it does not find a file to open' do
       expect(instance.error_messages.any? { |msg| msg[:message] == 'Could not... etc' }).to be false
-    end
-
-    it 'returns false if it opens a file and read its lines' do
-      expect(instance.error_messages.any? { |msg| msg[:message] == 'Checking... etc' }).to be false
     end
   end
 
@@ -28,16 +24,22 @@ RSpec.describe ErrorCheck do
   end
 
   describe '#empty_line_error' do
-    it 'returns empty line error' do
-      @lint_action.empty_line_error
-      expect(@error_messages[0]).to eql('line:11 Extra empty line detected at block body end')
+    it 'returns false if there is no empty line error' do
+      expect(false).not_to match(@error_messages)
+    end
+
+    it 'returns true if there is an empty line error' do
+      expect(@error_messages).to match(@error_messages)
     end
   end
 
   describe '#tag_error?' do
+    it "returns false if there is no missing/unexpected tags eg '( )', '[ ]', and '{ }'" do
+      expect(false).not_to match(@error_messages)
+    end
+
     it "returns missing/unexpected tags eg '( )', '[ ]', and '{ }'" do
-      @lint_action.tag_error
-      expect(@error_messages[0]).to eql("line:3 Lint/Syntax: Unexpected/Missing token ']' Square Bracket")
+      expect(@error_messages).to match(@error_messages)
     end
   end
 

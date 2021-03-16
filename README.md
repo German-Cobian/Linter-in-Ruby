@@ -166,14 +166,14 @@ Below are demonstrations of good and bad code for the above cases. I will use th
    
 - Add the file or files to be linted in the project root directory.
 - Execute the main.rb file inside bin/main.
-- Specify the path to the file when prompted (../my_test.rb for example).
+- Specify the path to the file when prompted (../my_test.rb is the sample test file provided).
 - The ruby file will run only if the path given is correct!
 
 
 ### Automated tests
 
 - The Rspec test cases reside in example_spec.rb file in the spec folder.
-- To run the test cases, type (rspec spec/example_spec.rb) in your terminal.
+- To run the test cases, type rspec in your terminal.
 
 
 ## Built With

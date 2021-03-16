@@ -1,4 +1,4 @@
-require_relative 'check_error.rb'
+require_relative 'check_error'
 
 class FileReader
   attr_reader :file_path, :valid, :line_by_line
@@ -13,8 +13,3 @@ class FileReader
     end
   end
 end
-
-
-
-
-
