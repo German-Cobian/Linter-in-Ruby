@@ -190,9 +190,9 @@ This project was built using these technologies.
 
 👤 **German Cobian**
 
-  GitHub: @German-Cobian
+- GitHub: @German-Cobian
 
-  twitter: https://twitter.com/GermanCobian3
+- twitter: https://twitter.com/GermanCobian3
 
 
 ## 🤝 Contributing

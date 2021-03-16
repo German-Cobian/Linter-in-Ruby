@@ -1,3 +1,4 @@
+require_relative '../lib/file_reader'
 require_relative '../lib/check_error'
 
 RSpec.describe ErrorCheck do
@@ -23,7 +24,7 @@ RSpec.describe ErrorCheck do
     end
   end
 
-  describe '#empty_line_error' do
+  describe '#empty_line_error?' do
     it 'returns false if there is no empty line error' do
       expect(false).not_to match(@error_messages)
     end
