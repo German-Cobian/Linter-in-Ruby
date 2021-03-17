@@ -78,3 +78,4 @@ RSpec.describe ErrorCheck do
     end
   end
 end
+
