@@ -18,6 +18,8 @@ class ErrorCheck
     double_space_around_operator?
   end
 
+  private
+
   def trailing_space?
     @lint_action.line_by_line.each_with_index do |line, idx|
       @error_messages << { line_num: idx + 1, message: 'Trailing whitespace detected' } if line[-2] == ' ' && !line.strip.empty?
