@@ -1,8 +1,8 @@
 ![](https://img.shields.io/badge/Microverse-blueviolet)
 
-# Linter in Ruby
+# Linter-in-Ruby
 
-This project provides feedback about errors in code.The project consists of four code files.
+This project provides feedback about errors in code. The project consists of four code files.
 
   The 'bin' folder
   main.rb This is the executable file that controls lint logic.
@@ -19,12 +19,12 @@ The project was built completely with Ruby following all possible best practices
 
 The custom Ruby linter currently checks/detects for the following errors/warnings.
 
-- check for trailing space(s) at the end of each line
-- check for empty line errors
-- check for missing/unexpected tags i.e. '( )', '[ ]', and '{ }'
-- check for double quotes when there are no string interpolation or special symbols
-- check for that no indentation occurs on a line where a class is declared
-- check that there are only single spaces around an operator
+* check for trailing space(s) at the end of each line
+* check for empty line errors
+* check for missing/unexpected tags i.e. '( )', '[ ]', and '{ }'
+* check for double quotes when there are no string interpolation or special symbols
+* check for that no indentation occurs on a line where a class is declared
+* check that there are only single spaces around an operator
 
 Below are demonstrations of good and bad code for the above cases. I will use the pipe '|' symbol to indicate cursor position where necessary.
 
@@ -153,46 +153,46 @@ Below are demonstrations of good and bad code for the above cases. I will use th
     end
 
 
+## Built With
+
+This project was built using these technologies.
+
+* Ruby
+* RSpec for Ruby testing
+* Rubocop
+* Git-Flow
+
+
 ## Getting Started
 
 
 ### How to run the linter
 
 
-- Get a local copy of the repository by running the following commands on your terminal:
+* Get a local copy of the repository by running the following commands on your terminal:
 
       $ cd <folder>    
       $ git clone git@github.com:German-Cobian/Linter-in-Ruby.git
    
-- Add the file or files to be linted in the project root directory.
-- Execute the main.rb file inside bin/main.
-- Specify the path to the file when prompted (../my_test.rb is the sample test file provided).
-- The ruby file will run only if the path given is correct!
+* Add the file or files to be linted in the project root directory.
+* Execute the main.rb file inside bin/main.
+* Specify the path to the file when prompted (../my_test.rb is the sample test file provided).
+* The ruby file will run only if the path given is correct!
 
 
 ### Automated tests
 
-- The Rspec test cases reside in example_spec.rb file in the spec folder.
-- To run the test cases, type rspec in your terminal.
-
-
-## Built With
-
-This project was built using these technologies.
-
-- Ruby
-- RSpec for Ruby testing
-- Rubocop
-- Git-Flow
+* The Rspec test cases reside in example_spec.rb file in the spec folder.
+* To run the test cases, type rspec in your terminal.
 
 
 ## Authors
 
 👤 **German Cobian**
 
-- GitHub: @German-Cobian
-
-- twitter: https://twitter.com/GermanCobian3
+* GitHub: [@German-Cobian](https://github.com/German-Cobian)
+* Twitter: [@GermanCobian3](https://twitter.com/GermanCobian3)
+* LinkedIn: [@german-cobian](https://www.linkedin.com/in/german-cobian)
 
 
 ## 🤝 Contributing
@@ -207,11 +207,11 @@ Give a ⭐️ if you like this project!
 
 ## Acknowledgments
 
-- Microverse
-- The Odin Project
-- Ruby Documentation
+* Microverse
+* The Odin Project
+* Ruby Documentation
 
 
 ## 📝 License
 
-This project is [MIT] licensed.
+This project is [MIT](https://github.com/German-Cobian/Linter-in-Ruby/blob/main/LICENSE) licensed.
